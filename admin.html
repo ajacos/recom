@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Product Management - ReCom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css"> <!-- Admin specific styles -->
+</head>
+<body>
+
+    <!-- Overlay (for mobile sidebar) -->
+    <div id="overlay" class="overlay"></div> 
+
+    <!-- Sidebar Navigation (Mobile Only) -->
+    <div id="sidebar" class="sidebar">
+        <button id="close-btn" class="close-btn" aria-label="Close Menu">&times;</button>
+        <nav>
+             <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header>
+         <div class="container">
+            <a href="index.html" class="logo">ReCom</a>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="desktop-nav">
+                 <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                 <a href="#" aria-label="Search"><i class="fas fa-search"></i></a>
+                 <a href="cart.html" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="admin-page">
+            <div class="container">
+                <h2>Product Management</h2>
+
+                <!-- Add/Edit Product Form -->
+                <div class="product-form-container card">
+                    <h3 id="form-title">Add New Product</h3>
+                    <form id="product-form">
+                        <input type="hidden" id="product-id"> <!-- Hidden field for editing -->
+                        
+                        <div class="form-group">
+                            <label for="product-name">Name:</label>
+                            <input type="text" id="product-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price">Price:</label>
+                            <input type="number" id="product-price" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description:</label>
+                            <textarea id="product-description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">Image URL:</label>
+                            <input type="text" id="product-image" placeholder="e.g., /images/product-new.jpg" required>
+                            <small>Ensure this path is relative to the server's 'public' folder or a full URL.</small>
+                        </div>
+                         <div class="form-group">
+                            <label for="product-category">Category:</label>
+                            <input type="text" id="product-category">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="save-product-btn">Save Product</button>
+                            <button type="button" class="btn btn-secondary" id="cancel-edit-btn" style="display: none;">Cancel Edit</button>
+                        </div>
+                    </form>
+                    <div id="form-message" class="message" style="display: none;"></div>
+                </div>
+
+                <!-- Product List Table -->
+                <h3>Existing Products</h3>
+                <div class="product-table-container">
+                    <table id="product-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table-body">
+                            <!-- Product rows will be loaded here -->
+                            <tr><td colspan="6">Loading products...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ReCom. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script> <!-- API Config -->
+    <script src="js/cart.js"></script> <!-- For updating cart icon if needed -->
+    <script src="js/admin.js"></script> <!-- Admin specific script -->
+    <script src="js/script.js"></script> <!-- Sidebar toggle -->
+
+</body>
+</html> 

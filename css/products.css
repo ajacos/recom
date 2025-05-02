@@ -1,0 +1,110 @@
+/* Products Page Specific Styles */
+
+.products-page {
+    padding: 40px 0;
+}
+
+.products-page h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    color: #333;
+}
+
+/* Search Bar Styling */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 10px; /* Space between input and button */
+}
+
+#product-search {
+    padding: 12px 15px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Match button rounding */
+    width: 100%;
+    max-width: 400px; /* Limit search bar width */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#product-search:focus {
+    outline: none;
+    border-color: #8D6E63; /* Highlight color */
+    box-shadow: 0 0 5px rgba(141, 110, 99, 0.5); /* Subtle glow */
+}
+
+.search-container .btn {
+    padding: 12px 20px; /* Match input height */
+    border-radius: 25px;
+}
+
+.search-container .btn i {
+    margin-right: 5px;
+}
+
+/* Product Item Styling Overrides/Additions */
+.products-page .product-item {
+    /* Inherits base styles from style.css */
+    display: flex; /* Use flexbox for better control */
+    flex-direction: column;
+    justify-content: space-between; /* Push button to bottom */
+    height: 100%; /* Make items in a row equal height */
+}
+
+.products-page .product-item img {
+    height: 220px; /* Slightly larger image */
+    object-fit: cover;
+}
+
+.products-page .product-item h3 {
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+.products-page .product-item .price {
+    margin-top: 5px;
+    font-size: 1.1em;
+}
+
+.products-page .product-item .description {
+    font-size: 0.9em;
+    color: #666;
+    margin: 10px 15px; /* Add some horizontal padding */
+    flex-grow: 1; /* Allow description to take space */
+    line-height: 1.4;
+}
+
+.products-page .product-item .btn {
+    margin-top: auto; /* Push button to the bottom */
+    align-self: center; /* Center button */
+    width: calc(100% - 40px); /* Button width relative to padding */
+    margin-bottom: 15px;
+}
+
+/* Responsive adjustments for search */
+@media (max-width: 600px) {
+    .search-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #product-search {
+        max-width: none; /* Full width on small screens */
+    }
+
+    .search-container .btn {
+        width: 100%;
+        max-width: 400px; /* Match input max-width */
+    }
+    
+    .products-page .product-item .description {
+        margin: 10px;
+    }
+
+    .products-page .product-item .btn {
+        width: calc(100% - 30px);
+    }
+} 

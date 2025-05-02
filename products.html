@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ReCom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- Shared styles -->
+    <link rel="stylesheet" href="css/products.css"> <!-- Products page specific styles -->
+</head>
+<body>
+
+    <!-- Optional: Overlay for when sidebar is open -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar Navigation (Mobile Only) - Moved OUTSIDE header -->
+    <div id="sidebar" class="sidebar">
+        <button id="close-btn" class="close-btn" aria-label="Close Menu">&times;</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">ReCom</a>
+            
+            <!-- Hamburger Menu Button (Mobile Only) -->
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Desktop Navigation -->
+            <nav id="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+
+            <!-- Nav Icons (Remain in Header) -->
+            <div class="nav-icons">
+                <a href="#" aria-label="Search"><i class="fas fa-search"></i></a>
+                <a href="cart.html" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="products-page">
+            <div class="container">
+                <h2>Our Products</h2>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="product-search" placeholder="Search for products...">
+                    <button class="btn btn-secondary" onclick="searchProducts()"><i class="fas fa-search"></i> Search</button> 
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid" id="all-products-grid">
+                    <!-- Products will be loaded here by JavaScript -->
+                    <p>Loading products...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Reusing the same footer structure -->
+        <div class="container">
+            <p>&copy; 2024 ReCom. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script> <!-- API Config FIRST -->
+    <!-- <script src="js/products-data.js"></script> --> <!-- REMOVED -->
+    <script src="js/cart.js"></script> 
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script> <!-- Sidebar toggle -->
+
+</body>
+</html> 

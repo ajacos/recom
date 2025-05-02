@@ -1,0 +1,441 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4; /* Light background for contrast */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; /* Rounded buttons */
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #5D4037; /* Darker brown from image for contrast */
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #4E342E;
+}
+
+.btn-secondary {
+    background-color: #A1887F; /* Lighter brown for secondary actions */
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #8D6E63;
+}
+
+/* Header & Navbar */
+header {
+    background-color: #8D6E63; /* Main brown from image */
+    color: #fff;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 900; /* Lower than overlay/sidebar */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; 
+}
+
+/* Desktop Nav Styles (Default for > 768px) */
+/* Target the specific desktop nav */
+header #desktop-nav {
+    display: block; /* Show desktop nav by default */
+    order: 1; /* Default order */
+}
+header #desktop-nav ul {
+    list-style: none;
+    display: flex;
+}
+header #desktop-nav ul li { margin-left: 25px; }
+header #desktop-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+header #desktop-nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #fff;
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+}
+header #desktop-nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+    background-color: #fff;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    order: 0; /* Logo first on desktop */
+}
+
+.nav-icons {
+    order: 2; /* Icons last on desktop */
+}
+
+header .nav-icons a {
+    color: #fff;
+    margin-left: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    position: relative;
+}
+
+header .nav-icons .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #E64A19; /* Contrasting color for count */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+/* Hamburger Button (Hidden on Desktop) */
+.hamburger-btn {
+    display: none; 
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8em;
+    cursor: pointer;
+    padding: 5px;
+    order: 0; /* Will be first on mobile */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px; /* Adjust width as needed */
+    background-color: #5D4037; /* Darker brown */
+    z-index: 1100; /* High */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none; /* Ignore clicks when hidden */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+    pointer-events: auto; /* Allow clicks when open */
+}
+
+.sidebar nav {
+    display: block; /* Ensure nav is visible inside sidebar */
+    margin-top: 40px; /* Space below close button */
+    flex-grow: 1;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+}
+
+.sidebar nav ul li {
+    margin: 0; /* Remove horizontal margin */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+}
+
+.sidebar nav ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 10px;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease;
+    position: relative; 
+    pointer-events: auto; 
+}
+
+.sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar nav ul li a::after {
+    display: none; /* Remove underline effect from desktop */
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.5em;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1101; /* Above sidebar bg */
+    pointer-events: auto; 
+}
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 1050; /* Above header, below sidebar */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    pointer-events: none; /* Ignore clicks when hidden */
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Allow clicks when active (to close sidebar) */
+}
+
+/* Hero Section */
+.hero {
+    background-color: #8D6E63; /* Main brown from image */
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* Featured Products Section */
+.featured-products {
+    padding: 60px 0;
+}
+
+.featured-products h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding-bottom: 20px; /* Space for button */
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-item img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Scale image nicely */
+    display: block;
+}
+
+.product-item h3 {
+    margin: 15px 0 10px 0;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.product-item .price {
+    font-size: 1.1em;
+    color: #5D4037; /* Darker brown */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+/* Remove the min-width query as desktop is now default */
+/* @media (min-width: 769px) { 
+    header nav { 
+        display: block;
+    }
+} */
+
+@media (max-width: 768px) {
+    /* Mobile Styles: Hide Desktop Nav, Show Hamburger */
+    /* Target the specific desktop nav */
+    header #desktop-nav { 
+        display: none; /* Hide the standard nav block */
+    }
+    .hamburger-btn {
+        display: block; /* Show hamburger */
+        order: 0;       /* Position hamburger first (left) */
+    }
+    .logo {
+        order: 1;       /* Logo comes after hamburger */
+        /* Adjust logo margin if needed to center it better */
+         margin-left: auto; /* Push logo towards center/right if hamburger takes space */
+         margin-right: auto;
+         /* padding-left: 40px; /* Add padding if hamburger overlaps */
+    }
+    .nav-icons {
+        order: 2;       /* Icons last */
+    }
+
+    header .container {
+        /* Optional: Adjust padding if needed */
+    }
+
+    /* Sidebar and overlay logic remains the same */
+    /* ... existing sidebar styles within media query if any ... */
+
+    body.sidebar-open-no-scroll {
+        overflow: hidden;
+    }
+
+    /* Other existing mobile styles */
+    .hero h1 {
+        font-size: 2.8em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .featured-products h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    header .logo {
+        font-size: 1.5em;
+    }
+
+    header nav ul li {
+        margin: 5px 10px;
+    }
+
+    header .nav-icons {
+       margin-top: 10px;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
+
+    .hero p {
+        font-size: 0.9em;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Stack products on very small screens */
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+/* Remove the redundant media query block below if it exists */
+/* @media (max-width: 768px) {
+    ...
+} */ 
