@@ -1,0 +1,403 @@
+/* Account Page Specific Styles */
+
+.account-page {
+    padding: 50px 0 70px 0; /* More vertical padding */
+    background-color: var(--bg-color);
+}
+
+.account-page .container {
+    max-width: 950px; /* Slightly wider */
+}
+
+.account-page h2 {
+    text-align: center;
+    margin-bottom: 40px; /* More space below title */
+    color: #343a40;
+    font-weight: 600;
+    font-size: 2em; /* Slightly smaller title */
+}
+
+.account-layout {
+    display: flex;
+    gap: 30px; /* Gap between sidebar and main content */
+    align-items: flex-start;
+}
+
+/* === Sidebar Styling === */
+.account-sidebar {
+    flex: 0 0 250px; /* Fixed width sidebar */
+    /* Inherits .card styles (background, padding, border, shadow) */
+    padding: 20px 0; /* Adjust padding - remove horizontal */
+}
+
+.account-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-nav li {
+    margin: 0;
+}
+
+.account-nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--light-text); /* Default text color */
+    text-decoration: none;
+    border-left: 4px solid transparent; /* Placeholder for active border */
+    transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
+    font-weight: 500;
+    font-size: 0.95em;
+}
+
+.account-nav .nav-link i {
+    margin-right: 15px;
+    width: 20px; /* Fixed width for alignment */
+    text-align: center;
+    font-size: 1.1em;
+    color: #999; /* Icon color */
+    transition: color 0.2s ease;
+}
+
+.account-nav .nav-link .coming-soon {
+    font-size: 0.75em;
+    color: #aaa;
+    margin-left: auto; /* Push to the right */
+    font-style: italic;
+}
+
+.account-nav .nav-link:hover {
+    background-color: #f1f1f1;
+    color: var(--text-color);
+    text-decoration: none;
+}
+.account-nav .nav-link:hover i {
+    color: var(--primary-color);
+}
+
+.account-nav .nav-link.active {
+    background-color: hsl(from var(--primary-color) h s 95%); /* Very light theme color bg */
+    color: var(--dark-brown); /* Darker text for active */
+    font-weight: 600;
+    border-left-color: var(--primary-color); /* Theme color border */
+}
+
+.account-nav .nav-link.active i {
+    color: var(--primary-color); /* Theme color icon */
+}
+
+/* === Main Content Styling === */
+.account-main-content {
+    flex: 1; /* Take remaining space */
+    min-width: 0; /* Prevent overflow issues */
+}
+
+.account-section {
+    display: none; /* Hide sections by default */
+}
+
+.account-section.active {
+    display: block; /* Show active section */
+}
+
+.account-section h2 {
+    font-size: 1.6em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.account-section .card {
+     /* Reuse general card style, maybe add more padding */
+     padding: 30px 35px;
+}
+
+/* Profile Settings Specific */
+.profile-card {
+    /* Contains picture area and form */
+}
+
+.profile-picture-area {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+}
+
+.profile-picture-section { /* Container for image and camera icon */
+    position: relative;
+    margin: 0; /* Reset margin */
+}
+
+.profile-picture {
+    width: 120px; 
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: block;
+}
+
+.camera-icon-overlay {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: background-color 0.2s ease;
+}
+.camera-icon-overlay:hover {
+    background-color: var(--dark-brown);
+}
+
+.profile-picture-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.profile-picture-actions .btn {
+    padding: 6px 15px;
+    font-size: 0.9em;
+}
+
+.profile-picture-actions .btn-secondary {
+     background-color: transparent;
+     border-color: var(--border-color);
+     color: var(--light-text);
+}
+.profile-picture-actions .btn-secondary:hover {
+     background-color: #f1f1f1;
+     border-color: #ccc;
+     color: var(--text-color);
+}
+
+.profile-picture-actions small {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Profile Form Layout */
+#profile-details-form .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#profile-details-form .form-group-half {
+    flex: 1;
+    min-width: 200px; /* Adjust as needed */
+}
+
+#profile-details-form .form-group {
+    margin-bottom: 20px;
+}
+
+#profile-details-form label {
+    font-weight: 500;
+    font-size: 0.9em;
+    color: var(--light-text);
+    margin-bottom: 6px;
+    display: block;
+}
+#profile-details-form label .required {
+    color: #dc3545;
+    margin-left: 2px;
+}
+
+#profile-details-form input[type="text"],
+#profile-details-form input[type="email"],
+#profile-details-form input[type="tel"],
+#profile-details-form textarea {
+     /* Use base form styles */
+}
+#profile-details-form input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+#profile-details-form textarea {
+    min-height: 80px;
+}
+
+.gender-options label {
+    display: inline-flex; /* Align radio and text */
+    align-items: center;
+    margin-right: 20px;
+    font-weight: normal;
+    font-size: 0.95em;
+    color: var(--text-color);
+}
+.gender-options input[type="radio"] {
+    margin-right: 6px;
+    width: auto; /* Override global */
+}
+
+.form-actions-main {
+    text-align: right; /* Align button right */
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+.form-actions-main .btn-primary {
+     /* Use theme color */
+     background-color: var(--primary-color);
+     border-color: var(--primary-color);
+     padding: 10px 30px;
+     font-size: 1em;
+}
+.form-actions-main .btn-primary:hover {
+    background-color: var(--dark-brown);
+    border-color: var(--dark-brown);
+}
+
+/* Password Section Styles */
+#password-settings .card {
+    max-width: 500px; /* Limit width for password form */
+}
+#password-settings .form-group {
+     margin-bottom: 20px;
+}
+#password-settings button[type="submit"] {
+     margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .account-layout {
+        flex-direction: column;
+    }
+    .account-sidebar {
+        flex: 1 1 auto; /* Allow sidebar to take full width */
+        width: 100%;
+        padding: 15px; /* Adjust padding */
+    }
+    .account-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+     .account-nav .nav-link {
+         border-left: none;
+         border-bottom: 3px solid transparent;
+         font-size: 0.9em;
+         padding: 10px 15px;
+     }
+     .account-nav .nav-link.active {
+         border-left: none;
+         border-bottom-color: var(--primary-color);
+     }
+}
+
+@media (max-width: 768px) {
+     .profile-picture-area {
+         flex-direction: column;
+         align-items: center;
+         gap: 15px;
+     }
+     .profile-picture-actions {
+         align-items: center;
+     }
+     #profile-details-form .form-row {
+        gap: 0; /* Stack fields vertically */
+     }
+     #profile-details-form .form-group-half {
+         flex-basis: 100%;
+         min-width: auto;
+     }
+      .form-actions-main {
+         text-align: center;
+     }
+}
+
+/* Remove Old/Redundant Styles */
+/* .account-content, .account-info, .account-actions, etc. (styles from previous layout) */
+
+/* --- Cropper Modal Styles --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    padding-top: 60px; /* Location of the box */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 25px 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* Max width */
+    border-radius: 8px;
+    position: relative;
+}
+
+/* The Close Button */
+.close-modal-btn {
+    color: #aaa;
+    position: absolute; 
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-modal-btn:hover,
+.close-modal-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.img-container {
+    width: 100%;
+    max-height: 400px; /* Limit height */
+    margin-bottom: 20px;
+    background-color: #f0f0f0; /* Background for image area */
+}
+
+/* Ensure the image within Cropper.js fills the container */
+.img-container > img {
+  display: block;
+  /* Set the maximum image size */
+  max-width: 100%; 
+}
+
+.modal-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal-actions .btn {
+    margin: 0 10px;
+}
+/* --- End Modal Styles --- */ 

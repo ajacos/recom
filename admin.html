@@ -21,7 +21,6 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
                 <li><a href="admin.html">Admin</a></li>
             </ul>
         </nav>
@@ -38,7 +37,6 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="admin.html">Admin</a></li>
                 </ul>
             </nav>
@@ -55,71 +53,141 @@
     <main>
         <section class="admin-page">
             <div class="container">
-                <h2>Product Management</h2>
-
-                <!-- Add/Edit Product Form -->
-                <div class="product-form-container card">
-                    <h3 id="form-title">Add New Product</h3>
-                    <form id="product-form">
-                        <input type="hidden" id="product-id"> <!-- Hidden field for editing -->
-                        
-                        <div class="form-group">
-                            <label for="product-name">Name:</label>
-                            <input type="text" id="product-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="product-price">Price:</label>
-                            <input type="number" id="product-price" step="0.01" min="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="product-description">Description:</label>
-                            <textarea id="product-description"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="product-image">Image URL:</label>
-                            <input type="text" id="product-image" placeholder="e.g., /images/product-new.jpg" required>
-                            <small>Ensure this path is relative to the server's 'public' folder or a full URL.</small>
-                        </div>
-                         <div class="form-group">
-                            <label for="product-category">Category:</label>
-                            <input type="text" id="product-category">
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary" id="save-product-btn">Save Product</button>
-                            <button type="button" class="btn btn-secondary" id="cancel-edit-btn" style="display: none;">Cancel Edit</button>
-                        </div>
-                    </form>
-                    <div id="form-message" class="message" style="display: none;"></div>
+                <div class="admin-header">
+                    <h2>Admin Dashboard</h2>
+                    <button id="logout-btn" class="btn btn-danger">Logout</button>
                 </div>
 
-                <!-- Product List Table -->
-                <h3>Existing Products</h3>
-                <div class="product-table-container">
-                    <table id="product-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Category</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="product-table-body">
-                            <!-- Product rows will be loaded here -->
-                            <tr><td colspan="6">Loading products...</td></tr>
-                        </tbody>
-                    </table>
+                <!-- Tab Navigation -->
+                <div class="admin-tabs">
+                    <button class="tab-link active" data-tab="products-tab">Products</button>
+                    <button class="tab-link" data-tab="users-tab">Users</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="products-tab" class="tab-content active">
+                    <div class="admin-content-area">
+                        <!-- Add/Edit Product Form -->
+                        <div class="product-form-container admin-section-card">
+                            <h3 id="form-title">Add/Edit Product</h3>
+                            <form id="product-form">
+                                <input type="hidden" id="product-id"> 
+                                
+                                <div class="form-group">
+                                    <label for="product-name">Name:</label>
+                                    <input type="text" id="product-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-price">Price:</label>
+                                    <input type="number" id="product-price" step="0.01" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-description">Description:</label>
+                                    <textarea id="product-description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-image">Image URL:</label>
+                                    <input type="text" id="product-image" placeholder="e.g., /images/product-new.jpg" required>
+                                    <img id="image-preview" src="#" alt="Image Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px; display: none;">
+                                    <small>Ensure this path is relative to the server's 'public' folder or a full URL.</small>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="product-category">Category:</label>
+                                    <input type="text" id="product-category">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary" id="save-product-btn">Save Product</button>
+                                    <button type="button" class="btn btn-secondary" id="cancel-edit-btn" style="display: none;">Cancel Edit</button>
+                                </div>
+                            </form>
+                            <div id="form-message" class="message" style="display: none;"></div>
+                        </div>
+
+                        <!-- Product List Section -->
+                        <div class="product-list-container admin-section-card">
+                            <h3>Existing Products</h3>
+                            <!-- Search Input -->
+                            <div class="form-group product-search-container">
+                                 <label for="product-search-input" class="sr-only">Search Products</label> <!-- Screen-reader only label -->
+                                 <input type="text" id="product-search-input" placeholder="Search products by name, category...">
+                            </div>
+                            <div class="table-container">
+                                <table class="admin-table" id="product-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Category</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product-table-body">
+                                        <!-- Initial Loading Row -->
+                                        <tr id="loading-row"><td colspan="6"><span>⏳</span> Loading products...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="users-tab" class="tab-content">
+                    <!-- User List Section -->
+                    <div class="user-list-container admin-section-card">
+                         <h3>User Management</h3>
+                         <!-- Optional: Add user search later -->
+                         <div class="table-container">
+                             <table class="admin-table" id="user-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>Joined</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="user-table-body">
+                                    <tr id="user-loading-row"><td colspan="5"><span>⏳</span> Loading users...</td></tr>
+                                </tbody>
+                            </table>
+                         </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 ReCom. All Rights Reserved.</p>
+        <div class="container footer-content">
+            <div class="footer-section about">
+                <h4>About ReCom</h4>
+                <p>Your innovative one-stop e-commerce solution for curated quality products. Discover, compare, and shop with ease.</p>
+            </div>
+            <div class="footer-section links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="admin.html">Admin Login</a></li> 
+                    <li><a href="#">Terms of Service</a></li> <!-- Placeholder -->
+                    <li><a href="#">Privacy Policy</a></li> <!-- Placeholder -->
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h4>Follow Us</h4>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 ReCom. All Rights Reserved.
         </div>
     </footer>
 

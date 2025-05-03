@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - ReCom</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Optional: Use some base styles -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-box card">
+            <h2>Admin Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <div id="login-message" class="message" style="display: none;"></div>
+            <div class="back-link">
+                <span>Don't have an admin account yet? </span><a href="signup.html">Sign up here</a>
+                <br>
+                <a href="index.html">&larr; Back to Site</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script> <!-- API Config -->
+    <script src="js/login.js"></script>
+
+</body>
+</html> 

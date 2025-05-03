@@ -1,164 +1,405 @@
 /* Admin Page Specific Styles */
 
 .admin-page {
-    padding: 40px 0;
+    padding: 40px 0 60px 0; /* Increased padding */
+    background-color: #f8f9fa; /* Light background like image */
 }
 
-.admin-page h2, 
-.admin-page h3 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+.admin-page .container {
+     max-width: 1400px; /* Wider container for admin */
 }
 
 .admin-page h2 {
-    font-size: 2.2em;
+    font-size: 2.2em; /* Larger main title */
+    font-weight: 600;
+    color: #495057; /* Darker grey */
+    margin-bottom: 0; /* Let admin-header handle bottom margin */
 }
 
 .admin-page h3 {
-    font-size: 1.8em;
-    margin-top: 40px; /* Space between sections */
+    font-size: 1.5em; /* Slightly smaller section titles */
+    font-weight: 600; /* Bolder */
+    color: #495057;
+    margin-bottom: 20px; /* Space below title */
+    margin-top: 0;
 }
 
-/* Form Styling */
-.product-form-container {
-    max-width: 700px;
-    margin: 0 auto 40px auto; /* Center form */
+/* Header within Admin Page */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px; /* More space below header */
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dee2e6; /* Lighter border */
+}
+
+#logout-btn {
+    padding: 8px 20px; /* Adjusted padding */
+    font-size: 0.9em;
+    background-color: #f8f9fa; /* Light grey like image */
+    color: #343a40; /* Dark text */
+    border: 1px solid #dee2e6;
+    border-radius: 6px; /* Less rounded */
+    font-weight: 500;
+}
+#logout-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+/* Layout Area */
+.admin-content-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Consistent gap */
+}
+
+/* Card Styles for Sections */
+.admin-section-card {
     background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px; /* Consistent padding */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06); /* Softer, smaller shadow */
+    border: 1px solid #e9ecef; /* Subtle border */
+    /* Remove margin-top, rely on gap */
 }
 
+/* Product Form Specifics */
+.product-form-container {
+    flex: 1;
+    min-width: 350px; /* Adjusted */
+    align-self: flex-start;
+    transition: box-shadow 0.3s ease;
+}
+
+.product-form-container.editing {
+    /* Keep editing style */
+    border-color: #ffc107;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+}
+
+/* Product/User List Containers */
+.product-list-container,
+.user-list-container {
+    flex: 2;
+    min-width: 450px;
+}
+
+.user-list-container {
+    flex-basis: 100%;
+    order: 3;
+}
+
+/* --- Form Styling Enhancements --- */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* More space between form groups */
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
+    margin-bottom: 8px; /* Space between label and input */
+    font-weight: 500;
+    color: #495057;
+    font-size: 0.95em;
 }
 
 .form-group input[type="text"],
 .form-group input[type="number"],
+.form-group input[type="url"], /* Added type url if used */
 .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
     border-radius: 4px;
     font-size: 1em;
-    box-sizing: border-box; /* Include padding in width */
+    line-height: 1.5;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-group textarea {
-    min-height: 100px;
-    resize: vertical;
+    min-height: 100px; /* Set a minimum height */
+    resize: vertical; /* Allow vertical resize */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #8D6E63; /* Theme color (from style.css) */
+    box-shadow: 0 0 0 0.2rem rgba(141, 110, 99, 0.25); /* Match style.css focus */
+    outline: none;
 }
 
 .form-group small {
     display: block;
     margin-top: 5px;
     font-size: 0.85em;
-    color: #777;
+    color: #6c757d;
+}
+
+#image-preview {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    object-fit: cover;
 }
 
 .form-actions {
-    margin-top: 30px;
-    text-align: right;
+    margin-top: 25px;
 }
 
-.form-actions .btn {
+/* Specific Button Styling */
+#save-product-btn {
+    background-color: #795548; /* Brown color from image */
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 20px; /* Rounded like image */
+    border: none;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+#save-product-btn:hover {
+    background-color: #5D4037; /* Darker brown on hover */
+}
+
+#cancel-edit-btn {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px; /* Less rounded */
     margin-left: 10px;
+    font-weight: 500;
+}
+#cancel-edit-btn:hover {
+    background-color: #5a6268;
+}
+/* --- End Form Styling --- */
+
+/* --- Tab Styling --- */
+.admin-tabs {
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 30px;
 }
 
-.message {
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 4px;
-    text-align: center;
-    font-weight: bold;
+.tab-link {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent; /* Hidden border for spacing */
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #6c757d; /* Inactive color */
+    margin-bottom: -1px; /* Overlap the container's border */
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.message.success {
-    background-color: #d4edda; /* Light green */
-    color: #155724; /* Dark green */
-    border: 1px solid #c3e6cb;
+.tab-link:hover {
+    color: #495057;
 }
 
-.message.error {
-    background-color: #f8d7da; /* Light red */
-    color: #721c24; /* Dark red */
-    border: 1px solid #f5c6cb;
+.tab-link.active {
+    color: #495057; /* Active color */
+    font-weight: 600;
+    border-bottom-color: #8D6E63; /* Theme color bottom border */
 }
 
-/* Table Styling */
-.product-table-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+.tab-content {
+    display: none; /* Hide all tab content by default */
 }
 
-#product-table {
+.tab-content.active {
+    display: block; /* Show only the active tab content */
+}
+/* --- End Tab Styling --- */
+
+/* Search Input Specifics */
+.product-search-container input {
+     margin-bottom: 20px; /* More space below search */
+     padding: 10px 12px;
+     border: 1px solid #ced4da;
+     border-radius: 4px;
+     width: 100%; /* Make search full width */
+}
+
+/* Table Enhancements (Consolidated) */
+.table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 0; /* Removed margin-top, handled by search input */
+    background-color: #fff; /* Ensure table bg is white inside card */
 }
 
-#product-table th, 
-#product-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
+.admin-table th,
+.admin-table td {
+    border: 1px solid #dee2e6; /* Consistent light border */
+    padding: 12px 15px;
     text-align: left;
+    vertical-align: middle;
+    font-size: 0.9em; /* Slightly smaller table font */
+    white-space: nowrap;
+}
+
+/* Allow wrapping for specific columns */
+#product-table th:nth-child(3), /* Product Name header */
+#product-table td:nth-child(3) { /* Product Name cells */
+    white-space: normal;
+    min-width: 150px; /* Give name more space */
+}
+#product-table th:nth-child(1), /* Product ID */
+#product-table td:nth-child(1) {
+     min-width: 200px; /* Give ID more space */
+     font-size: 0.85em;
+     color: #6c757d;
+}
+#user-table th:nth-child(1), /* User ID */
+#user-table td:nth-child(1) {
+    min-width: 200px;
+    font-size: 0.85em;
+    color: #6c757d;
+}
+#user-table th:nth-child(2), /* Username */
+#user-table td:nth-child(2) {
+    white-space: normal;
+}
+
+.admin-table th {
+    background-color: #f8f9fa; /* Very light grey header like image */
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.95em;
+}
+
+/* Uncomment for hover/striping if desired
+.admin-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+.admin-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+*/
+
+/* Specific Table Adjustments */
+#product-table td img {
+    max-width: 45px; /* Slightly smaller image */
+    height: 45px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #eee;
     vertical-align: middle;
 }
 
-#product-table th {
-    background-color: #f2f2f2; /* Light grey header */
-    font-weight: bold;
+/* Table Action Buttons Styling */
+.admin-table td .btn {
+    padding: 6px 12px; /* More padding */
+    font-size: 0.85em; /* Smaller font */
+    margin-right: 6px;
+    vertical-align: middle;
+    border-radius: 6px; /* Less rounded */
+    background-color: #f8f9fa; /* Light background like image */
+    color: #343a40;
+    border: 1px solid #dee2e6;
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    /* Reset general btn styles if needed */
+    transform: none; 
+}
+.admin-table td .btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    transform: none;
 }
 
-#product-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Zebra striping */
+.admin-table td .btn i {
+    margin-right: 5px; /* Space between icon and text */
+    vertical-align: middle;
+    font-size: 1.1em;
 }
 
-#product-table tbody tr:hover {
-    background-color: #f1f1f1;
+/* Adjust danger button colors */
+.admin-table td .btn.btn-danger {
+     background-color: #f8d7da; /* Light red background */
+     color: #721c24; /* Dark red text */
+     border-color: #f5c6cb;
+}
+.admin-table td .btn.btn-danger:hover {
+     background-color: #f1b0b7;
+     border-color: #ee9a9a;
 }
 
-#product-table td img {
-    max-width: 60px;
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Center image */
-    border-radius: 4px;
+/* User Table Specific Input */
+.admin-table td select {
+     padding: 6px 10px;
+     font-size: 0.9em;
+     border: 1px solid #ced4da;
+     border-radius: 4px;
+     margin-right: 8px;
+     vertical-align: middle;
+     background-color: #fff;
 }
 
-#product-table td .btn {
-    padding: 5px 10px;
-    font-size: 0.9em;
-    margin-right: 5px;
+/* Loading Spinner */
+.admin-table td span {
+    font-size: 1.3em;
+    margin-right: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    animation: spin 1.5s linear infinite;
 }
 
-#product-table td .btn i {
-    margin-right: 3px;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-#product-table td .btn-danger {
-     background-color: #dc3545; /* Bootstrap red */
-     color: white;
-}
-#product-table td .btn-danger:hover {
-     background-color: #c82333;
+/* Responsive */
+@media (max-width: 992px) {
+    .admin-content-area {
+        flex-direction: column;
+    }
+    .product-form-container {
+         max-width: none;
+         order: 1;
+    }
+     .product-list-container {
+         order: 2;
+    }
+     .user-list-container {
+         order: 3;
+    }
+    .admin-page h2 {
+        font-size: 1.8em;
+    }
+    .admin-page h3 {
+        font-size: 1.3em;
+    }
 }
 
-#product-table td .btn-warning {
-     background-color: #ffc107; /* Bootstrap yellow */
-     color: #212529;
-}
-#product-table td .btn-warning:hover {
-     background-color: #e0a800;
-} 
+/* General Admin Card Style - REMOVED */
+
+/* User List Section - REMOVED */
+
+/* Re-use table container style if needed - REMOVED */
+
+/* #user-table - REMOVED */
+
+/* #user-table th, #user-table td - REMOVED */
+
+/* #user-table th - REMOVED */
+
+/* #user-table tbody tr:nth-child(even) - REMOVED */
+
+/* #user-table tbody tr:hover - REMOVED */
+
+/* Action buttons in user table - REMOVED */
+
+/* #user-table td select - REMOVED */
+
+/* Responsive adjustments for layout - REMOVED */
+
+/* ... rest of admin.css ... */ 

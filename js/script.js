@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('featured-product-grid')) {
         loadFeaturedProducts();
     }
+
+    // Update navigation based on login status
+    updateNavigation();
 });
 
 function updateCartIcon() {
@@ -122,5 +125,74 @@ async function fetchProductDetailsAndAddToCart(productId) {
     } catch (error) {
         console.error("Error fetching product details for cart:", error);
         alert("Could not add product to cart. Please try again.");
+    }
+}
+
+// Simple JWT Decoder (reuse from login.js/account.js)
+function decodeJwtPayload(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        // console.error("Error decoding JWT payload for nav:", e);
+        return null;
+    }
+}
+
+// --- Navigation Update Function ---
+function updateNavigation() {
+    const token = localStorage.getItem('recom_admin_token');
+    const payload = token ? decodeJwtPayload(token) : null;
+    
+    // Common elements
+    const accountLink = document.getElementById('nav-account-link');
+    const accountLinkDesktop = document.getElementById('nav-account-link-desktop');
+    const adminLink = document.getElementById('nav-admin-link');
+    const adminLinkDesktop = document.getElementById('nav-admin-link-desktop');
+    const loginIcon = document.getElementById('nav-login-icon');
+    const logoutIcon = document.getElementById('nav-logout-icon');
+
+    if (payload) { // User is logged in
+        // Show Account links
+        if (accountLink) accountLink.style.display = 'list-item';
+        if (accountLinkDesktop) accountLinkDesktop.style.display = 'list-item';
+
+        // Show Admin links only if role is admin or seller
+        if (payload.role === 'admin' || payload.role === 'seller') {
+            if (adminLink) adminLink.style.display = 'list-item';
+            if (adminLinkDesktop) adminLinkDesktop.style.display = 'list-item';
+        } else {
+            if (adminLink) adminLink.style.display = 'none';
+            if (adminLinkDesktop) adminLinkDesktop.style.display = 'none';
+        }
+
+        // Toggle Login/Logout icons
+        if (loginIcon) loginIcon.style.display = 'none';
+        if (logoutIcon) {
+            logoutIcon.style.display = 'inline-block';
+            // Add logout functionality to the icon
+            logoutIcon.onclick = () => {
+                localStorage.removeItem('recom_admin_token');
+                // localStorage.removeItem('recom_cart'); // Optionally clear cart too
+                updateNavigation(); // Update nav immediately
+                // Redirect to homepage or login after logout
+                window.location.href = 'index.html'; 
+            };
+        }
+
+    } else { // User is logged out
+        // Hide Account and Admin links
+        if (accountLink) accountLink.style.display = 'none';
+        if (accountLinkDesktop) accountLinkDesktop.style.display = 'none';
+        if (adminLink) adminLink.style.display = 'none';
+        if (adminLinkDesktop) adminLinkDesktop.style.display = 'none';
+
+        // Toggle Login/Logout icons
+        if (loginIcon) loginIcon.style.display = 'inline-block';
+        if (logoutIcon) logoutIcon.style.display = 'none';
     }
 } 

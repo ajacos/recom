@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ReCom</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Optional: Use some base styles -->
+    <link rel="stylesheet" href="css/login.css"> <!-- Reuse login styles for consistency -->
+    <style>
+        /* Add specific styles for role selection if needed */
+        .role-selection {
+            margin-bottom: 20px;
+            text-align: center; /* Center align the radio buttons */
+        }
+        .role-selection label {
+            margin: 0 10px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        .role-selection input[type="radio"] {
+            margin-right: 5px;
+            vertical-align: middle; /* Align radio button with text */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-box card">
+            <h2>Create Your Account</h2>
+            <p style="margin-bottom: 20px; color: #555;">Create the initial admin account.</p>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required minlength="6">
+                    <small>Must be at least 6 characters long.</small>
+                </div>
+                 <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" required minlength="6">
+                </div>
+
+                <!-- Role Selection -->
+                <div class="form-group role-selection">
+                     <label>
+                        <input type="radio" name="role" value="customer" checked> Customer
+                    </label>
+                    <label>
+                        <input type="radio" name="role" value="seller"> Seller
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+            <div id="signup-message" class="message" style="display: none;"></div>
+            <div class="back-link">
+                <span>Already have an account? </span><a href="login.html">Login here</a>
+                <br>
+                <a href="index.html">&larr; Back to Site</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script> <!-- API Config -->
+    <script src="js/signup.js"></script>
+
+</body>
+</html> 
